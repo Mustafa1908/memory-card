@@ -1,13 +1,13 @@
 import "../styles/MemoryCards.css";
 import { useState } from "react";
 
-function renderPokemonCard(cardArray, userScores, userBestScore) {
+function renderPokemonCard(cardArray, userScores) {
   let memoryCardsContainer = document.querySelector(".memoryCardsContainer");
   let currentScore = document.querySelector(".currentScore");
   let bestScore = document.querySelector(".bestScore");
 
-  currentScore.innerText = "Score: " + userScores;
-  bestScore.innerText = "Best Score: " + userBestScore;
+  currentScore.innerText = "Score: " + userScores[0];
+  bestScore.innerText = "Best Score: " + userScores[1];
   memoryCardsContainer.innerHTML = "";
 
   for (let i = 0; i < cardArray.length; i++) {
@@ -30,8 +30,7 @@ function renderPokemonCard(cardArray, userScores, userBestScore) {
 
 export default function MemoryCards() {
   const [pokemonArray, setPokemonArray] = useState([]);
-  const [userScores, setUserScores] = useState(0);
-  const [userBestScore, setUserBestScore] = useState(0);
+  const [userScores, setUserScores] = useState([0, 0]);
   const [trueFalse, setTrueFalse] = useState(0);
 
   async function createCardsArray() {
@@ -81,20 +80,23 @@ export default function MemoryCards() {
     while (exitLoop !== 1) {
       for (let i = shuffleArray.length - 1; i > 0; i--) {
         if (shuffleArray[i][0] === cardText) {
+          let userScoresArray = userScores.slice();
           if (shuffleArray[i][2] === true) {
             setPokemonArray([]);
             setTrueFalse(0);
 
-            if (userBestScore < userScores) {
-              setUserBestScore(userScores);
+            if (userScores[1] < userScores[0]) {
+              userScoresArray[1] = userScoresArray[0];
             }
 
-            setUserScores(0);
+            userScoresArray[0] = 0;
+            setUserScores(userScoresArray);
             return;
           }
 
           shuffleArray[i][2] = true;
-          setUserScores(userScores + 1);
+          userScoresArray[0] += 1;
+          setUserScores(userScoresArray);
           break;
         }
       }
@@ -105,7 +107,7 @@ export default function MemoryCards() {
   }
 
   if (trueFalse === 8) {
-    renderPokemonCard(pokemonArray, userScores, userBestScore);
+    renderPokemonCard(pokemonArray, userScores);
   }
 
   document.addEventListener("click", function shuffleCards(e) {
