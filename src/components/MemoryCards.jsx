@@ -1,31 +1,13 @@
-import "../styles/MemoryCards.css";
 import { useState } from "react";
+import Card from "./Card";
+import "../styles/MemoryCards.css";
 
-function renderPokemonCard(cardArray, userScores) {
-  let memoryCardsContainer = document.querySelector(".memoryCardsContainer");
+function renderUserScores(userScores) {
   let currentScore = document.querySelector(".currentScore");
   let bestScore = document.querySelector(".bestScore");
 
   currentScore.innerText = "Score: " + userScores[0];
   bestScore.innerText = "Best Score: " + userScores[1];
-  memoryCardsContainer.innerHTML = "";
-
-  for (let i = 0; i < cardArray.length; i++) {
-    let cardContainer = document.createElement("div");
-    let pokemonImage = document.createElement("img");
-    let pokemonName = document.createElement("span");
-
-    cardContainer.className = "cardContainer";
-    cardContainer.dataset.index = i;
-    pokemonImage.className = "pokemonPicture";
-    pokemonName.className = "pokemonName";
-    pokemonName.innerText = cardArray[i][0];
-    pokemonImage.src = cardArray[i][1];
-
-    cardContainer.appendChild(pokemonImage);
-    cardContainer.appendChild(pokemonName);
-    memoryCardsContainer.appendChild(cardContainer);
-  }
 }
 
 export default function MemoryCards() {
@@ -62,11 +44,39 @@ export default function MemoryCards() {
 
   createCardsArray();
 
+  function gameLost(userScores, userScoresArray) {
+    //Check if best score is beaten
+    if (userScores[1] < userScores[0]) {
+      userScoresArray[1] = userScoresArray[0];
+    }
+
+    userScoresArray[0] = 0;
+    setUserScores(userScoresArray);
+    setPokemonArray([]);
+    setTrueFalse(0);
+  }
+
+  function gameWon(userScoresArray) {
+    userScoresArray[1] = userScoresArray[0] + 1;
+    userScoresArray[0] = 0;
+
+    setPokemonArray([]);
+    setTrueFalse(0);
+    setUserScores(userScoresArray);
+  }
+
+  function addPoint(shuffleArray, userScoresArray, index) {
+    shuffleArray[index][2] = true;
+    userScoresArray[0] += 1;
+    setUserScores(userScoresArray);
+
+    return shuffleArray;
+  }
+
   function shuffleArray(cardText) {
     let shuffleArray = pokemonArray.slice();
 
     for (let i = shuffleArray.length - 1; i > 0; i--) {
-      // Generate random number
       let j = Math.floor(Math.random() * (i + 1));
 
       let temp = shuffleArray[i];
@@ -76,27 +86,23 @@ export default function MemoryCards() {
 
     let exitLoop = 0;
 
-    // Check if user won or lost
+    // Check if user won or lost or need a point added
     while (exitLoop !== 1) {
-      for (let i = shuffleArray.length - 1; i > 0; i--) {
+      for (let i = 0; i < shuffleArray.length; i++) {
         if (shuffleArray[i][0] === cardText) {
           let userScoresArray = userScores.slice();
+
           if (shuffleArray[i][2] === true) {
-            setPokemonArray([]);
-            setTrueFalse(0);
-
-            if (userScores[1] < userScores[0]) {
-              userScoresArray[1] = userScoresArray[0];
-            }
-
-            userScoresArray[0] = 0;
-            setUserScores(userScoresArray);
+            gameLost(userScores, userScoresArray);
             return;
           }
 
-          shuffleArray[i][2] = true;
-          userScoresArray[0] += 1;
-          setUserScores(userScoresArray);
+          if (userScoresArray[0] === 7) {
+            gameWon(userScoresArray);
+            return;
+          }
+
+          shuffleArray = addPoint(shuffleArray, userScoresArray, i);
           break;
         }
       }
@@ -106,8 +112,9 @@ export default function MemoryCards() {
     setPokemonArray(shuffleArray);
   }
 
+  //If pokemon array is fully loaded render the score
   if (trueFalse === 8) {
-    renderPokemonCard(pokemonArray, userScores);
+    renderUserScores(userScores);
   }
 
   document.addEventListener("click", function shuffleCards(e) {
@@ -125,7 +132,18 @@ export default function MemoryCards() {
   return (
     <>
       <main className="main">
-        <div className="memoryCardsContainer"></div>
+        <div className="memoryCardsContainer">
+          {pokemonArray.map((pokemonData, index) => {
+            if (pokemonArray.length === 8) {
+              return (
+                <Card
+                  pokemonName={pokemonData[0]}
+                  pokemonImage={pokemonData[1]}
+                />
+              );
+            }
+          })}
+        </div>
       </main>
     </>
   );
