@@ -1,0 +1,18 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.memoryCardsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 37.9rem;
+  max-width: 53rem;
+  border: 3px solid green;
+}

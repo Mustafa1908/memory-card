@@ -14,7 +14,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: 10rem;
+  min-height: 8rem;
 }
 
 .headerOneContainer {
@@ -38,7 +38,8 @@
   gap: 2rem;
 }
 
-.headerText {
+.currentScore,
+.bestScore {
   font-size: var(--step-1);
   color: white;
 }
