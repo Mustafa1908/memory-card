@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Card from "./Card";
+import LoadingPage from "./LoadingPage";
 import "../styles/MemoryCards.css";
 
 function renderUserScores(userScores) {
@@ -14,10 +15,13 @@ export default function MemoryCards() {
   const [pokemonArray, setPokemonArray] = useState([]);
   const [userScores, setUserScores] = useState([0, 0]);
   const [trueFalse, setTrueFalse] = useState(0);
+  let loader = document.querySelector(".loader");
 
   async function createCardsArray() {
     if (trueFalse === 8) {
       return pokemonArray;
+    } else if (loader !== null) {
+      loader.style.display = "block";
     }
 
     let randomNumber = Math.floor(Math.random() * 1025) + 1;
@@ -112,11 +116,6 @@ export default function MemoryCards() {
     setPokemonArray(shuffleArray);
   }
 
-  //If pokemon array is fully loaded render the score
-  if (trueFalse === 8) {
-    renderUserScores(userScores);
-  }
-
   document.addEventListener("click", function shuffleCards(e) {
     const target = e.target.closest(".cardContainer");
     if (target) {
@@ -129,14 +128,21 @@ export default function MemoryCards() {
     }
   });
 
+  //If pokemon array is fully loaded render the score
+  if (trueFalse === 8) {
+    loader.style.display = "none";
+    renderUserScores(userScores);
+  }
+
   return (
     <>
       <main className="main">
         <div className="memoryCardsContainer">
-          {pokemonArray.map((pokemonData, index) => {
+          {pokemonArray.map((pokemonData) => {
             if (pokemonArray.length === 8) {
               return (
                 <Card
+                  key={pokemonData[0]}
                   pokemonName={pokemonData[0]}
                   pokemonImage={pokemonData[1]}
                 />
@@ -145,6 +151,7 @@ export default function MemoryCards() {
           })}
         </div>
       </main>
+      <LoadingPage />
     </>
   );
 }
