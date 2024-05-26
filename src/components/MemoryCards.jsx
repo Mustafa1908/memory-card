@@ -1,21 +1,17 @@
 import { useState } from "react";
 import Card from "./Card";
 import LoadingPage from "./LoadingPage";
+import LosingMessage from "./LosingMessage";
+import WinningMessage from "./WinningMessage";
 import "../styles/MemoryCards.css";
-
-function renderUserScores(userScores) {
-  let currentScore = document.querySelector(".currentScore");
-  let bestScore = document.querySelector(".bestScore");
-
-  currentScore.innerText = "Score: " + userScores[0];
-  bestScore.innerText = "Best Score: " + userScores[1];
-}
 
 export default function MemoryCards() {
   const [pokemonArray, setPokemonArray] = useState([]);
   const [userScores, setUserScores] = useState([0, 0]);
   const [trueFalse, setTrueFalse] = useState(0);
   let loader = document.querySelector(".loader");
+  const dialog = document.querySelector("dialog");
+  const winningDialog = document.querySelector(".dialog");
 
   async function createCardsArray() {
     if (trueFalse === 8) {
@@ -55,6 +51,17 @@ export default function MemoryCards() {
     }
 
     userScoresArray[0] = 0;
+
+    const closeButton = document.querySelector(".closeLose");
+
+    dialog.style.display = "flex";
+    dialog.showModal();
+
+    closeButton.addEventListener("click", () => {
+      dialog.close();
+      dialog.style.display = "none";
+    });
+
     setUserScores(userScoresArray);
     setPokemonArray([]);
     setTrueFalse(0);
@@ -63,6 +70,16 @@ export default function MemoryCards() {
   function gameWon(userScoresArray) {
     userScoresArray[1] = userScoresArray[0] + 1;
     userScoresArray[0] = 0;
+
+    const winningButton = document.querySelector(".closeWin");
+
+    winningDialog.style.display = "flex";
+    winningDialog.showModal();
+
+    winningButton.addEventListener("click", () => {
+      winningDialog.close();
+      winningDialog.style.display = "none";
+    });
 
     setPokemonArray([]);
     setTrueFalse(0);
@@ -116,6 +133,14 @@ export default function MemoryCards() {
     setPokemonArray(shuffleArray);
   }
 
+  function renderUserScores(userScores) {
+    let currentScore = document.querySelector(".currentScore");
+    let bestScore = document.querySelector(".bestScore");
+
+    currentScore.innerText = "Score: " + userScores[0];
+    bestScore.innerText = "Best Score: " + userScores[1];
+  }
+
   document.addEventListener("click", function shuffleCards(e) {
     const target = e.target.closest(".cardContainer");
     if (target) {
@@ -142,7 +167,6 @@ export default function MemoryCards() {
             if (pokemonArray.length === 8) {
               return (
                 <Card
-                  key={pokemonData[0]}
                   pokemonName={pokemonData[0]}
                   pokemonImage={pokemonData[1]}
                 />
@@ -150,8 +174,10 @@ export default function MemoryCards() {
             }
           })}
         </div>
+        <LoadingPage />
+        <LosingMessage />
+        <WinningMessage />
       </main>
-      <LoadingPage />
     </>
   );
 }
