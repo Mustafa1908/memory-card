@@ -1,8 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card";
-import LoadingPage from "./LoadingPage";
-import LosingMessage from "./LosingMessage";
-import WinningMessage from "./WinningMessage";
 import "../styles/MemoryCards.css";
 
 export default function MemoryCards() {
@@ -10,11 +7,11 @@ export default function MemoryCards() {
   const [userScores, setUserScores] = useState([0, 0]);
   const [trueFalse, setTrueFalse] = useState(0);
   let loader = document.querySelector(".loader");
-  const dialog = document.querySelector("dialog");
-  const winningDialog = document.querySelector(".dialog");
+  let dialog = document.querySelector("dialog");
+  let winningDialog = document.querySelector(".dialog");
 
   async function createCardsArray() {
-    if (trueFalse === 8) {
+    if (trueFalse === 12) {
       return pokemonArray;
     } else if (loader !== null) {
       loader.style.display = "block";
@@ -132,19 +129,21 @@ export default function MemoryCards() {
 
     setPokemonArray(shuffleArray);
   }
+  console.log("hey");
 
-  function renderUserScores(userScores) {
+  //Render user current score and user best score
+  useEffect(() => {
     let currentScore = document.querySelector(".currentScore");
     let bestScore = document.querySelector(".bestScore");
 
     currentScore.innerText = "Score: " + userScores[0];
     bestScore.innerText = "Best Score: " + userScores[1];
-  }
+  }, [userScores]);
 
   document.addEventListener("click", function shuffleCards(e) {
     const target = e.target.closest(".cardContainer");
     if (target) {
-      if (trueFalse > 0 && pokemonArray.length === 8) {
+      if (trueFalse > 0 && pokemonArray.length === 12) {
         shuffleArray(target.innerText);
         document.removeEventListener("click", shuffleCards);
         return;
@@ -154,9 +153,8 @@ export default function MemoryCards() {
   });
 
   //If pokemon array is fully loaded render the score
-  if (trueFalse === 8) {
+  if (trueFalse === 12) {
     loader.style.display = "none";
-    renderUserScores(userScores);
   }
 
   return (
@@ -164,9 +162,10 @@ export default function MemoryCards() {
       <main className="main">
         <div className="memoryCardsContainer">
           {pokemonArray.map((pokemonData) => {
-            if (pokemonArray.length === 8) {
+            if (pokemonArray.length === 12) {
               return (
                 <Card
+                  key={pokemonData[0]}
                   pokemonName={pokemonData[0]}
                   pokemonImage={pokemonData[1]}
                 />
@@ -174,9 +173,6 @@ export default function MemoryCards() {
             }
           })}
         </div>
-        <LoadingPage />
-        <LosingMessage />
-        <WinningMessage />
       </main>
     </>
   );
