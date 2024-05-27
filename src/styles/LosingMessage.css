@@ -1,10 +1,79 @@
-::backdrop {
-  background-image: linear-gradient(
-    45deg,
-    magenta,
-    rebeccapurple,
-    dodgerblue,
-    green
-  );
-  opacity: 0.75;
+:root {
+  --step-2: clamp(1.62rem, 1.5248rem + 0.4759vi, 1.9531rem);
+  --step-3: clamp(1.944rem, 1.8019rem + 0.7106vi, 2.4414rem);
+}
+
+@font-face {
+  font-family: pokemonFont;
+  src: url(../font-family/pokemon-dp-pro.ttf);
+}
+
+dialog {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  gap: 0.4rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 2rem;
+  border: 1px solid transparent;
+  min-width: 25rem;
+  min-height: 30rem;
+  background-color: #155e75;
+}
+
+.losingGif {
+  max-width: 23rem;
+  min-height: 21rem;
+  border-radius: 2rem;
+  height: auto;
+}
+
+.losingText {
+  font-family: pokemonFont;
+  font-size: var(--step-3);
+  color: white;
+}
+
+.closeLose {
+  min-width: 17rem;
+  min-height: 3rem;
+  border-radius: 3rem;
+  border: 1px solid transparent;
+  font-family: pokemonFont;
+  font-size: var(--step-2);
+  background-color: #374151;
+  color: white;
+}
+
+.closeLose:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  dialog {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 2rem;
+    border: 1px solid transparent;
+    max-width: 32rem;
+    min-height: 26rem;
+    background-color: #155e75;
+  }
+
+  .losingGif {
+    max-width: 18rem;
+    min-height: 18rem;
+    border-radius: 2rem;
+    height: auto;
+  }
 }
