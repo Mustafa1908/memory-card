@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 1rem;
 }
 
 .memoryCardsContainer {
@@ -12,7 +13,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 2rem;
   min-height: 37.9rem;
-  max-width: 53rem;
-  border: 3px solid green;
+  max-width: 90rem;
 }
