@@ -9,11 +9,10 @@ export default function LosingMessage() {
           src="https://i.giphy.com/8JL3dO7r5nUkWBKmza.webp"
           alt=""
         />
-        <span>You lost better luck next time!</span>
+        <span className="losingText">You lost better luck next time</span>
         <button className="closeLose" autoFocus>
-          Retry
+          Retry one more time
         </button>
-        <p>This modal dialog has a groovy backdrop!</p>
       </dialog>
     </>
   );
