@@ -1,18 +1,51 @@
+:root {
+  --step-2: clamp(1.62rem, 1.5248rem + 0.4759vi, 1.9531rem);
+}
+
+@font-face {
+  font-family: pokemonFont;
+  src: url(../font-family/pokemon-dp-pro.ttf);
+}
+
 .cardContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 4rem;
-  border: 3px solid red;
-  min-height: 20rem;
+  max-height: 20rem;
   min-width: 13rem;
+  gap: 2rem;
+  border-radius: 1rem;
+  background-color: #374151;
+  opacity: 0.8;
 }
 
 .cardContainer:hover {
   cursor: pointer;
 }
 
+.pokemonPicture {
+  width: 10rem;
+}
+
 .pokemonName {
-  border: 3px solid brown;
+  color: white;
+  font-size: var(--step-2);
+  font-family: pokemonFont;
+  padding-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .cardContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1rem;
+    min-height: 16rem;
+    min-width: 10rem;
+    border-radius: 3rem;
+    background-color: #374151;
+  }
 }
