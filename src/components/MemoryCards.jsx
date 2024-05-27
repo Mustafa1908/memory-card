@@ -129,7 +129,6 @@ export default function MemoryCards() {
 
     setPokemonArray(shuffleArray);
   }
-  console.log("hey");
 
   //Render user current score and user best score
   useEffect(() => {
@@ -165,7 +164,6 @@ export default function MemoryCards() {
             if (pokemonArray.length === 12) {
               return (
                 <Card
-                  key={pokemonData[0]}
                   pokemonName={pokemonData[0]}
                   pokemonImage={pokemonData[1]}
                 />
