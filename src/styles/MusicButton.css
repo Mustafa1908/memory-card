@@ -1,0 +1,10 @@
+.musicButton {
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: #020617;
+  font-size: 40px;
+  padding-left: 1rem;
+}
+.musicButton:hover {
+  cursor: pointer;
+}
