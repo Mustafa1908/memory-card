@@ -18,10 +18,7 @@ export default function MusicButton() {
       >
         music_note{" "}
         <audio autoPlay loop className="pokemonMusic">
-          <source
-            src="../src/assets/audio/pokemon-music.mp4"
-            type="audio/mpeg"
-          />
+          <source src="pokemon-music.mp4" type="audio/mpeg" />
         </audio>
       </button>
       <button
