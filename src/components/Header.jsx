@@ -1,21 +1,7 @@
-import { useState } from "react";
+import MusicButton from "./MusicButton";
 import "../styles/Header.css";
 
 export default function Header() {
-  const [music, setMusic] = useState(true);
-
-  const playMusic = () => {
-    let pokemonMusic = document.querySelector(".pokemonMusic");
-
-    if (music === true) {
-      pokemonMusic.pause();
-      setMusic(false);
-    } else {
-      pokemonMusic.play();
-      setMusic(true);
-    }
-  };
-
   return (
     <>
       <header className="header">
@@ -26,18 +12,7 @@ export default function Header() {
             className="pokeBallPicture"
           />
           <h1 className="headerOne">PokeCard</h1>
-          <button
-            className="material-symbols-outlined musicButton"
-            onClick={playMusic}
-          >
-            music_note{" "}
-            <audio autoPlay loop className="pokemonMusic">
-              <source
-                src="../src/assets/audio/pokemon-music.mp4"
-                type="audio/mpeg"
-              />
-            </audio>
-          </button>
+          <MusicButton />
         </div>
         <div className="headerTextContainer">
           <span className="currentScore">Score: 0</span>
