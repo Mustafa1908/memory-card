@@ -3,11 +3,6 @@
   --step-5: clamp(2.7994rem, 2.5093rem + 1.4505vi, 3.8147rem);
 }
 
-@font-face {
-  font-family: pokemonFont;
-  src: url(../font-family/pokemon-dp-pro.ttf);
-}
-
 .header {
   display: flex;
   justify-content: center;
@@ -30,7 +25,6 @@
   color: white;
   text-align: center;
   font-size: var(--step-5);
-  font-family: pokemonFont;
 }
 
 .headerTextContainer {
@@ -41,7 +35,6 @@
 .currentScore,
 .bestScore {
   font-size: var(--step-3);
-  font-family: pokemonFont;
   color: white;
 }
 
