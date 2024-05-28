@@ -1,9 +1,8 @@
 import { useState } from "react";
-import Test from "./ChooseDifficulty";
 import "../styles/Header.css";
 
 export default function Header() {
-  const [music, setMusic] = useState(false);
+  const [music, setMusic] = useState(true);
 
   const playMusic = () => {
     let pokemonMusic = document.querySelector(".pokemonMusic");
@@ -33,7 +32,10 @@ export default function Header() {
           >
             music_note{" "}
             <audio autoPlay loop className="pokemonMusic">
-              <source src="../audio/pokemon-music.mp4" type="audio/mpeg" />
+              <source
+                src="../src/assets/audio/pokemon-music.mp4"
+                type="audio/mpeg"
+              />
             </audio>
           </button>
         </div>
