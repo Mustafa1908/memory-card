@@ -1,19 +1,14 @@
-import { useState } from "react";
 import "../styles/MusicButton.css";
 
 export default function MusicButton() {
-  const [music, setMusic] = useState(false);
-
   const playMusic = () => {
     let pokemonMusic = document.querySelector(".pokemonMusic");
+    pokemonMusic.play();
+  };
 
-    if (music === true) {
-      pokemonMusic.pause();
-      setMusic(false);
-    } else {
-      pokemonMusic.play();
-      setMusic(true);
-    }
+  const stopMusic = () => {
+    let pokemonMusic = document.querySelector(".pokemonMusic");
+    pokemonMusic.pause();
   };
   return (
     <>
@@ -28,6 +23,12 @@ export default function MusicButton() {
             type="audio/mpeg"
           />
         </audio>
+      </button>
+      <button
+        className="material-symbols-outlined musicButton"
+        onClick={stopMusic}
+      >
+        music_off{" "}
       </button>
     </>
   );
