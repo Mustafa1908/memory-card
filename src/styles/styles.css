@@ -8,7 +8,13 @@
   --step-3: clamp(1.944rem, 1.8019rem + 0.7106vi, 2.4414rem);
 }
 
+@font-face {
+  font-family: pokemonFont;
+  src: url(../assets/font-family/pokemon-dp-pro.ttf);
+}
+
 body {
+  font-family: pokemonFont;
   font-size: var(--step-3);
   background-color: #cc524d;
   min-height: 100%;
@@ -21,6 +27,7 @@ body {
 
 @media (min-width: 1632px) {
   body {
+    font-family: pokemonFont;
     font-size: var(--step-3);
     background-color: #cc524d;
     min-height: 100%;
