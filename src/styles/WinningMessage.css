@@ -27,9 +27,8 @@ dialog {
 
 .winningGif {
   max-width: 23rem;
-  min-height: 23rem;
+  min-height: 21rem;
   border-radius: 2rem;
-  height: auto;
 }
 
 .winningText {
