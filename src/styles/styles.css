@@ -18,7 +18,7 @@ body {
   font-size: var(--step-3);
   background-color: #cc524d;
   min-height: 100%;
-  background-image: url(https://static1.srcdn.com/wordpress/wp-content/uploads/2022/09/Pokemon-Arceus-Artwork.jpg);
+  background-image: url(../assets/picture/Pokemon-Arceus-Artwork.avif);
   background-repeat: no-repeat;
   background-size: cover auto;
   background-position: center top;
@@ -31,7 +31,7 @@ body {
     font-size: var(--step-3);
     background-color: #cc524d;
     min-height: 100%;
-    background-image: url(https://static1.srcdn.com/wordpress/wp-content/uploads/2022/09/Pokemon-Arceus-Artwork.jpg);
+    background-image: url(../assets/picture/Pokemon-Arceus-Artwork.avif);
     background-repeat: no-repeat;
     background-size: cover;
   }
