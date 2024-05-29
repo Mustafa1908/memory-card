@@ -115,7 +115,7 @@ export default function MemoryCards() {
             return;
           }
 
-          if (userScoresArray[0] === 7) {
+          if (userScoresArray[0] === 11) {
             gameWon(userScoresArray);
             return;
           }
