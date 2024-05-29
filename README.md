@@ -16,4 +16,4 @@ A Memory card game where you have to find all the cards without choosing the sam
   <li>Learn how to play an audio on click and turn it off</li>
 </ul>
 <h2>More Projects</h2>
-<p>Here is a link to my previous project: <a href="https://github.com/Mustafa1908/cv-application/edit/main/README.md">Cv Application</a></p>
+<p>Here is a link to my previous project: <a href="https://github.com/Mustafa1908/cv-application">Cv Application</a></p>
