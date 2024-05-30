@@ -6,7 +6,7 @@ export default function WinningMessage() {
       <dialog className="dialog">
         <img
           className="winningGif"
-          src="../src/assets/picture/winning.gif"
+          src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNG5sMTd2YXhpdHY1Nm53YjB5eDI0bWN0ZDJoaWdrM25sN2Q5ZG9paCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9pxrEmGb1n1JklkSnG/giphy.gif"
           alt=""
         />
         <span className="winningText">You win congratulations!</span>
