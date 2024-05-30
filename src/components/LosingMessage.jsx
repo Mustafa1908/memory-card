@@ -6,7 +6,7 @@ export default function LosingMessage() {
       <dialog>
         <img
           className="losingGif"
-          src="https://i.giphy.com/8JL3dO7r5nUkWBKmza.webp"
+          src="../src/assets/picture/losing.gif"
           alt=""
         />
         <span className="losingText">You lost better luck next time</span>
