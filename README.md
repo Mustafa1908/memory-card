@@ -1,6 +1,6 @@
 <h1>Memory Card</h1>
 A Memory card game where you have to find all the cards without choosing the same card twice.
-</br></br><b>Live Preview: https://memory-card-one-roan.vercel.app//</b>
+</br></br><b><a href="https://memory-card-one-roan.vercel.app">Live Preview</a></b>
 </br></br><img src="https://github.com/Mustafa1908/memory-card/assets/148060283/1d67b1eb-fd7b-4a81-8107-a6a23ac58587">
 <h2>Features</h2>
 <ul>
